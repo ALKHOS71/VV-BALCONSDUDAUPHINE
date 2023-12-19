@@ -42,11 +42,22 @@
         var highlightLayer;
         function highlightFeature(e) {
             highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[45.68862133453268,5.203289943016125],[45.76490672513779,5.378780555530243]]);
+        }).fitBounds([[45.647105636221234,5.168647297800427],[45.79984200788461,5.520039393435554]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -81,6 +92,9 @@
         function pop_VOIEVERTEDESBALCONS_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -161,10 +175,12 @@
             style: style_VOIEVERTEDESBALCONS_1_0,
         });
         bounds_group.addLayer(layer_VOIEVERTEDESBALCONS_1);
-        map.addLayer(layer_VOIEVERTEDESBALCONS_1);
         function pop_VIARHONA_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -246,6 +262,9 @@
         function pop_COMMUNESTRAVERSEESPARLAVV_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -305,6 +324,9 @@
         function pop_EQUIPEMENTS_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -397,16 +419,16 @@
                         <td>' + (feature.properties['Dysfonctio'] !== null ? autolinker.link(feature.properties['Dysfonctio'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Dysfonctio_1</th>\
-                        <td>' + (feature.properties['Dysfonctio_1'] !== null ? autolinker.link(feature.properties['Dysfonctio_1'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Dysfonct_1</th>\
+                        <td>' + (feature.properties['Dysfonct_1'] !== null ? autolinker.link(feature.properties['Dysfonct_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Dysfonctio_2</th>\
-                        <td>' + (feature.properties['Dysfonctio_2'] !== null ? autolinker.link(feature.properties['Dysfonctio_2'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Dysfonct_2</th>\
+                        <td>' + (feature.properties['Dysfonct_2'] !== null ? autolinker.link(feature.properties['Dysfonct_2'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Dysfonctio_3</th>\
-                        <td>' + (feature.properties['Dysfonctio_3'] !== null ? autolinker.link(feature.properties['Dysfonctio_3'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Dysfonct_3</th>\
+                        <td>' + (feature.properties['Dysfonct_3'] !== null ? autolinker.link(feature.properties['Dysfonct_3'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">S.01</th>\
@@ -617,23 +639,6 @@
                 interactive: true,
             }
                     break;
-                default:
-                    return {
-                pane: 'pane_EQUIPEMENTS_4',
-                shape: 'triangle',
-                radius: 8.4,
-                opacity: 1,
-                color: 'rgba(255,103,1,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(235,131,171,1.0)',
-                interactive: true,
-            }
-                    break;
             }
         }
         map.createPane('pane_EQUIPEMENTS_4');
@@ -659,6 +664,9 @@
         function pop_DISPOSITIFSDESIGNALISATION_5(feature, layer) {
             layer.on({
                 mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
                     if (typeof layer.closePopup == 'function') {
                         layer.closePopup();
                     } else {
@@ -847,16 +855,22 @@
                         <td>' + (feature.properties['Remarque'] !== null ? autolinker.link(feature.properties['Remarque'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['auxiliary_storage_callouts_originx'] !== null ? autolinker.link(feature.properties['auxiliary_storage_callouts_originx'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['auxiliary_'] !== null ? autolinker.link(feature.properties['auxiliary_'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['auxiliary_storage_callouts_originy'] !== null ? autolinker.link(feature.properties['auxiliary_storage_callouts_originy'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['auxiliar_1'] !== null ? autolinker.link(feature.properties['auxiliar_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['auxiliary_storage_callouts_destinationx'] !== null ? autolinker.link(feature.properties['auxiliary_storage_callouts_destinationx'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['auxiliar_2'] !== null ? autolinker.link(feature.properties['auxiliar_2'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['auxiliary_storage_callouts_destinationy'] !== null ? autolinker.link(feature.properties['auxiliary_storage_callouts_destinationy'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['auxiliar_3'] !== null ? autolinker.link(feature.properties['auxiliar_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['auxiliar_4'] !== null ? autolinker.link(feature.properties['auxiliar_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['auxiliar_5'] !== null ? autolinker.link(feature.properties['auxiliar_5'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -928,22 +942,6 @@
                 interactive: true,
             }
                     break;
-                default:
-                    return {
-                pane: 'pane_DISPOSITIFSDESIGNALISATION_5',
-                radius: 6.4,
-                opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 2.0,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(231,157,53,1.0)',
-                interactive: true,
-            }
-                    break;
             }
         }
         map.createPane('pane_DISPOSITIFSDESIGNALISATION_5');
@@ -967,7 +965,7 @@
         bounds_group.addLayer(layer_DISPOSITIFSDESIGNALISATION_5);
         map.addLayer(layer_DISPOSITIFSDESIGNALISATION_5);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'DISPOSITIFS DE SIGNALISATION<br /><table><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_SignalisationcyclablehorsVoieVerte0.png" /></td><td>Signalisation cyclable hors Voie Verte</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationdejalonnementcyclable1.png" /></td><td>Signalisation de jalonnement cyclable</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationdepolice2.png" /></td><td>Signalisation de police</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationtouristique3.png" /></td><td>Signalisation touristique</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_4.png" /></td><td></td></tr></table>': layer_DISPOSITIFSDESIGNALISATION_5,'EQUIPEMENTS<br /><table><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Banc0.png" /></td><td>Banc</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_ParkingVL1.png" /></td><td>Parking VL</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Pointdeaupotable2.png" /></td><td>Point d\'eau potable</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Poubelle3.png" /></td><td>Poubelle</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Stationnementvélosimple4.png" /></td><td>Stationnement vélo simple</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Tabledepiquenique5.png" /></td><td>Table de pique-nique</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Toilettes6.png" /></td><td>Toilettes</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_7.png" /></td><td></td></tr></table>': layer_EQUIPEMENTS_4,'<img src="legend/COMMUNESTRAVERSEESPARLAVV_3.png" /> COMMUNES TRAVERSEES PAR LA VV': layer_COMMUNESTRAVERSEESPARLAVV_3,'<img src="legend/VIARHONA_2.png" /> VIARHONA': layer_VIARHONA_2,'<img src="legend/VOIEVERTEDESBALCONS_1.png" /> VOIE VERTE DES BALCONS': layer_VOIEVERTEDESBALCONS_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'DISPOSITIFS DE SIGNALISATION<br /><table><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_SignalisationcyclablehorsVoieVerte0.png" /></td><td>Signalisation cyclable hors Voie Verte</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationdejalonnementcyclable1.png" /></td><td>Signalisation de jalonnement cyclable</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationdepolice2.png" /></td><td>Signalisation de police</td></tr><tr><td style="text-align: center;"><img src="legend/DISPOSITIFSDESIGNALISATION_5_Signalisationtouristique3.png" /></td><td>Signalisation touristique</td></tr></table>': layer_DISPOSITIFSDESIGNALISATION_5,'EQUIPEMENTS<br /><table><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Banc0.png" /></td><td>Banc</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_ParkingVL1.png" /></td><td>Parking VL</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Pointdeaupotable2.png" /></td><td>Point d\'eau potable</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Poubelle3.png" /></td><td>Poubelle</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Stationnementvélosimple4.png" /></td><td>Stationnement vélo simple</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Tabledepiquenique5.png" /></td><td>Table de pique-nique</td></tr><tr><td style="text-align: center;"><img src="legend/EQUIPEMENTS_4_Toilettes6.png" /></td><td>Toilettes</td></tr></table>': layer_EQUIPEMENTS_4,'<img src="legend/COMMUNESTRAVERSEESPARLAVV_3.png" /> COMMUNES TRAVERSEES PAR LA VV': layer_COMMUNESTRAVERSEESPARLAVV_3,'<img src="legend/VIARHONA_2.png" /> VIARHONA': layer_VIARHONA_2,'<img src="legend/VOIEVERTEDESBALCONS_1.png" /> VOIE VERTE DES BALCONS': layer_VOIEVERTEDESBALCONS_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
         setBounds();
         var i = 0;
         layer_COMMUNESTRAVERSEESPARLAVV_3.eachLayer(function(layer) {
@@ -975,7 +973,7 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['nom'] !== null?String('<div style="color: #323232; font-size: 11pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nom']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_COMMUNESTRAVERSEESPARLAVV_3'});
+            layer.bindTooltip((layer.feature.properties['nom'] !== null?String('<div style="color: #323232; font-size: 11pt; font-weight: bold; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['nom']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_COMMUNESTRAVERSEESPARLAVV_3'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
